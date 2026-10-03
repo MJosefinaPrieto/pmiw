@@ -1,5 +1,12 @@
 function boton (x, y, ancho, alto, texto) {
-  fill (40, 65, 42);
+   if (mouseX > x && mouseX < x + ancho && mouseY > y && mouseY < y + alto) {
+
+    fill(65, 90, 65); // color cuando pasa por encima
+
+  } else {
+
+  fill (40, 65, 42); // color normal
+  }
   rect (x, y, ancho, alto, 20);
   
   fill(255);

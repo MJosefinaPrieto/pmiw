@@ -1,10 +1,29 @@
 let imagenes = [];
 let cantidadEscenas = 15;
-let pantalla =1;
 
+
+let portada;
+
+let framesCascada= [];
+let N_FRAMES=4;
+let frameCascada= 0;
+let ultimoCambio = 0;
+let velocidadCascada = 150;
+
+let pantalla=0; //intro
 
 
 function preload() {
+  // animacion
+  portada = loadImage('assets/portada.jpg');
+
+  
+  for (let i = 1; i <= N_FRAMES; i++) {
+    framesCascada.push(loadImage('assets/sprite-' + i + '.png'));
+  }
+  
+  
+  // imagenes
   for (let i = 1; i <= cantidadEscenas; i++) {
     imagenes[i] = loadImage(`assets/escena-${i}.jpg`);
   }
@@ -14,6 +33,11 @@ function setup() {
 }
 
 function draw() {
+   if (pantalla == 0) {
+    intro();
+  }
+
+  
   // PANTALLA 1
   if (pantalla == 1) {
     image(imagenes[1], 0, 0, width, height);
@@ -132,7 +156,12 @@ textoPantallas ("Link desciende a unas mazmorras olvidadas bajo las montañas de
 
 
 function mousePressed() {
+  if (pantalla == 0) {
+  pantalla = 1;
+}
 
+else if (pantalla == 1) {
+}
   // PANTALLA 1 → PANTALLA 2
   if (pantalla == 1) {
 
