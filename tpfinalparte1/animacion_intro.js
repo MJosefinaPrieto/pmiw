@@ -1,23 +1,18 @@
 function intro() {
+   image(portada, 0, 0, width, height);
 
-  let escala = max(width / portada.width, height / portada.height);
-
-  let anchoPortada = portada.width * escala;
-  let altoPortada = portada.height * escala;
-
-  image(portada,(width - anchoPortada) / 2,(height - altoPortada) / 2, anchoPortada, altoPortada);
-
-  // Cambiar frame de la cascada
   if (millis() - ultimoCambio > velocidadCascada) {
-    frameCascada++;
+  frameCascada++;
 
-    if (frameCascada >= N_FRAMES) {
-      frameCascada = 0;
-    }
-
-    ultimoCambio = millis();
+  if (frameCascada >= N_FRAMES) {
+    frameCascada = 0;
   }
 
-  // Cascada
-  image(framesCascada[frameCascada], 270, 332, 90, 90);
+  ultimoCambio = millis();
+}
+  image(framesCascada[frameCascada], 317, 345, 55, 105);
+   if (millis() - tiempoIntro > 4000) {
+    pantalla = 16;
+  }
+
 }

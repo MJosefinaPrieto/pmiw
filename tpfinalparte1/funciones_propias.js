@@ -1,7 +1,7 @@
 function boton (x, y, ancho, alto, texto) {
    if (mouseX > x && mouseX < x + ancho && mouseY > y && mouseY < y + alto) {
 
-    fill(65, 90, 65); // color cuando pasa por encima
+    fill(76, 122, 58); // color cuando pasa por encima
 
   } else {
 
@@ -37,8 +37,28 @@ function textoPantallas (texto){
 
   fill(255);
   textFont("Georgia");
-  textSize(17);
+  textSize(18);
   textAlign(LEFT, CENTER);
 
  text(texto, 60, 315, 680, 70);
+}
+function textoIntroPantalla() {
+ background(0);
+  posTextoIntro -= velocidadTexto;
+  push();
+  
+  fill(255);
+  textFont("Georgia");
+  textSize (18);
+  
+  textAlign(CENTER, TOP);
+  text (textoIntro, 100, posTextoIntro, 600, 1000);
+
+  text (textoIntro2, 100, posTextoIntro + 500, 600, 300);
+text (textoIntro3, 100, posTextoIntro + 600,600, 300);
+  pop ();
+
+ if (posTextoIntro < -1200) {
+    pantalla = 1;
+ }
 }
