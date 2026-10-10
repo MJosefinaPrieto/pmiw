@@ -1,5 +1,5 @@
 function dibujarPantallas() {
-
+// arreglos para guardar las imagenes
   if (pantalla == 1) {
     image(imagenes[1], 0, 0, width, height);
     textoPantallas("En la fría noche, Link llega justo a tiempo: dos soldados de Ganon acorralan a Impa, la niñera de la princesa Zelda. Con un golpe certero, los ahuyenta y se arrodilla junto a ella, malherida pero viva.");
@@ -121,7 +121,7 @@ function cambiarPantalla(actual, siguiente, x = 290, y = 395, w = 220, h = 40) {
 }
 
 
-function clickPantallas() {
+function clickPantallas() { 
 
   if (cambiarPantalla(1, 2)) { }
 

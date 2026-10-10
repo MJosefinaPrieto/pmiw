@@ -1,6 +1,6 @@
+//https://www.youtube.com/watch?v=iwUMFvllqSk
 let imagenes = [];
 let cantidadEscenas = 18;
-
 
 let portada;
 
@@ -26,11 +26,10 @@ let sonidoIntro;
 let audioIniciado = false;
 
 
-function preload() {
+function preload() { // cargo los recursos imagenes y sonido. utilizo ciclos for
   // animacion
   portada = loadImage('assets/portada.jpg');
- 
-  
+
   for (let i = 1; i <= N_FRAMES; i++) {
     framesCascada.push(loadImage('assets/sprite-' + i + '.png'));
   }
@@ -43,14 +42,13 @@ function preload() {
   sonidoIntro = loadSound("sonido/LOZTheme.wav");
 
 }
-function setup() {
+function setup() { //algunas variables para la intro
   createCanvas(800, 450);
   tiempoIntro =millis ();
   posTextoIntro = height + 50;
   }
-
-
-function draw() {
+ 
+function draw() { // que parte se muestra en la pantalla segun el valor de la variable pantalla
    if (pantalla == 0) {
     intro();
   }
@@ -62,7 +60,7 @@ function draw() {
   }
 }
 
-function mousePressed() {
+function mousePressed() { // detectar los clics
 
   if (!audioIniciado) {
     userStartAudio();

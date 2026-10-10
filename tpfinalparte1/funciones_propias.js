@@ -1,9 +1,9 @@
-function iniciarMusica() {
+function iniciarMusica() { // reproduce el audio comprobando que este cargado
   if (sonidoIntro.isLoaded() && !sonidoIntro.isPlaying()) {
     sonidoIntro.play();
   }
 }
-function boton (x, y, ancho, alto, texto) {
+function boton (x, y, ancho, alto, texto) { // dibuja los botones y cambia los colores cuando le mouse pasa por encima
    if (mouseX > x && mouseX < x + ancho && mouseY > y && mouseY < y + alto) {
 
     fill(76, 122, 58); // color cuando pasa por encima
@@ -30,7 +30,7 @@ function boton (x, y, ancho, alto, texto) {
 }
 
 
-function clickBoton (x, y, ancho, alto){
+function clickBoton (x, y, ancho, alto){ // comprueba si se hace clic dentro del area del boton
     return mouseX > x &&
          mouseX < x + ancho &&
          mouseY > y &&
@@ -39,7 +39,6 @@ function clickBoton (x, y, ancho, alto){
 function textoPantallas (texto){
   fill(0, 0, 0, 170);
   rect(0, 300, 800, 165);
-
   fill(255);
   textFont("Georgia");
   textSize(18);
@@ -62,6 +61,7 @@ function textoIntroPantalla() {
   text (textoIntro2, 100, posTextoIntro + 500, 600, 300);
 text (textoIntro3, 100, posTextoIntro + 600,600, 300);
   pop ();
+  
 if (posTextoIntro < -700) {
   if (sonidoIntro.isPlaying()) {
     sonidoIntro.stop();
