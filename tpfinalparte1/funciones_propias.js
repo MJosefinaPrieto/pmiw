@@ -1,3 +1,8 @@
+function iniciarMusica() {
+  if (sonidoIntro.isLoaded() && !sonidoIntro.isPlaying()) {
+    sonidoIntro.play();
+  }
+}
 function boton (x, y, ancho, alto, texto) {
    if (mouseX > x && mouseX < x + ancho && mouseY > y && mouseY < y + alto) {
 
@@ -57,8 +62,11 @@ function textoIntroPantalla() {
   text (textoIntro2, 100, posTextoIntro + 500, 600, 300);
 text (textoIntro3, 100, posTextoIntro + 600,600, 300);
   pop ();
+if (posTextoIntro < -700) {
+  if (sonidoIntro.isPlaying()) {
+    sonidoIntro.stop();
+  }
 
- if (posTextoIntro < -1200) {
-    pantalla = 1;
- }
+  pantalla = 1;
+}
 }

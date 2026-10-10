@@ -41,7 +41,7 @@ function dibujarPantallas() {
 
   else if (pantalla == 8) {
     image(imagenes[8], 0, 0, width, height);
-    textoPantallas("Las antorchas se apagan una a una. Link revisó cada sala que pudo encontrar, pero algunos fragmentos siguen ocultos en rincones que nunca llegó a ver. Sin el poder completo, la misión termina aquí, por ahora.");
+    textoPantallas("Las antorchas se apagan una a una. Link revisó cada sala que pudo encontrar, pero algunos fragmentos siguen ocultos en rincones que nunca llegó a ver. Sin el poder completo, la misión puede terminar aquí.");
     boton(250, 390, 300, 50, "Retirarte a pensar una nueva estrategia");
   }
 
@@ -54,7 +54,7 @@ function dibujarPantallas() {
   else if (pantalla == 10) {
     image(imagenes[10], 0, 0, width, height);
     textoPantallas("Agotado tras la travesía, Link cuenta lo que consiguió: apenas la mitad de los fragmentos. No alcanza para enfrentar a Ganon. Respira hondo, sabiendo que deberá reunir fuerzas y volver a intentarlo.");
-    boton(290, 395, 220, 40, "Retirarte a recuperar fuerzas");
+boton(290, 395, 220, 40, "Continuar");
   }
 
   else if (pantalla == 11) {
@@ -89,6 +89,28 @@ function dibujarPantallas() {
     textoPantallas("El viaje termina antes de tiempo, pero no todo está perdido. Link mira hacia el horizonte, decidido a intentarlo de nuevo, con lo aprendido en el camino.");
     boton(290, 395, 220, 40, "Volver a empezar");
   }
+   else if (pantalla == 16) {
+    image(imagenes[16], 0, 0, width, height);
+    textoPantallas("Herido y sin fuerzas, Link huye cuesta abajo mientras la sombra de Ganon crece a sus espaldas. Con el último aliento grita el nombre de Impa, que corre hacia él a lo lejos.");
+    boton(80, 395, 300, 40, "Rendirse");
+    boton(420, 395, 300, 40, "Intentarlo una vez más");
+  }
+
+
+  else if (pantalla == 17) {
+    image(imagenes[17], 0, 0, width, height);
+    textoPantallas( "Cansado pero decidido, Link regresa a la entrada de la mazmorra. Todavía le faltan fragmentos y sin ellos no podrá enfrentar a Ganon. Respira hondo y vuelve a entrar.");
+    boton(80, 395, 300, 40, "Volver a las mazmorras");
+    boton(420, 395, 300, 40, "Abandonar la misión");
+  }
+
+ 
+  else if (pantalla == 18) {
+    image(imagenes[18], 0, 0, width, height);
+    textoPantallas("—Quedate quieto —dice Impa, apoyando las manos sobre su herida—. Todavía no es tu hora. Una luz dorada envuelve a Link y, poco a poco, el color vuelve a su rostro.");
+    boton(80, 395, 300, 40, "Enfrentarse a Ganon");
+    boton(420, 395, 300, 40, "Rendirse");
+  }
 }
 function cambiarPantalla(actual, siguiente, x = 290, y = 395, w = 220, h = 40) {
   if (pantalla == actual && clickBoton(x, y, w, h)) {
@@ -100,20 +122,37 @@ function cambiarPantalla(actual, siguiente, x = 290, y = 395, w = 220, h = 40) {
 
 
 function clickPantallas() {
+
   if (cambiarPantalla(1, 2)) { }
+
   else if (cambiarPantalla(2, 4, 80, 395, 190, 40)) { }
   else if (cambiarPantalla(2, 9, 305, 395, 190, 40)) { }
   else if (cambiarPantalla(2, 11, 530, 395, 190, 40)) { }
+
   else if (cambiarPantalla(4, 5, 130, 390, 240, 50)) { }
   else if (cambiarPantalla(4, 8, 430, 390, 240, 50)) { }
+
   else if (cambiarPantalla(5, 6)) { }
   else if (cambiarPantalla(6, 7)) { }
   else if (cambiarPantalla(7, 13)) { }
-  else if (cambiarPantalla(8, 15, 250, 390, 300, 50)) { }
-  else if (cambiarPantalla(9, 10)) { }
-  else if (cambiarPantalla(10, 15)) { }
+
+ else if (cambiarPantalla(9, 10)) { }
+
+else if (cambiarPantalla(10, 8)) { }
+else if (cambiarPantalla(8, 17, 250, 390, 300, 50)) { }
+
   else if (cambiarPantalla(11, 12)) { }
-  else if (cambiarPantalla(12, 14)) { }
+  else if (cambiarPantalla(12, 16)) { }
+  
+  else if (cambiarPantalla(16, 14, 80, 395, 300, 40)) { }
+  else if (cambiarPantalla(16, 18, 420, 395, 300, 40)) { }
+  
+  else if (cambiarPantalla(18, 6, 80, 395, 300, 40)) { }
+
+  
+  else if (cambiarPantalla(17, 5, 80, 395, 300, 40)) { }
+  else if (cambiarPantalla(17, 15, 420, 395, 300, 40)) { }
+  
   else if (cambiarPantalla(13, 1)) { }
   else if (cambiarPantalla(14, 1)) { }
   else if (cambiarPantalla(15, 1)) { }

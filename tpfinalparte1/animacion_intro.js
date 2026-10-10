@@ -12,7 +12,7 @@ function intro() {
 }
   image(framesCascada[frameCascada], 317, 345, 55, 105);
    if (millis() - tiempoIntro > 4000) {
-    pantalla = 16;
+    pantalla = 19;
   }
 
 }

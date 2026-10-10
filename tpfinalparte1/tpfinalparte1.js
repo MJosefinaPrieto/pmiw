@@ -1,5 +1,5 @@
 let imagenes = [];
-let cantidadEscenas = 15;
+let cantidadEscenas = 18;
 
 
 let portada;
@@ -9,6 +9,7 @@ let N_FRAMES=5;
 let frameCascada= 0;
 let ultimoCambio = 0;
 let velocidadCascada = 80;
+
 
 let pantalla=0; //intro
 
@@ -20,32 +21,40 @@ let velocidadTexto = 0.8;
 let textoIntro2 = "Maria Agustina Saldaño";
 let textoIntro3 = "María Josefina Prieto";
 
+// audio
+let sonidoIntro;
+let audioIniciado = false;
+
+
 function preload() {
   // animacion
   portada = loadImage('assets/portada.jpg');
-
+ 
   
   for (let i = 1; i <= N_FRAMES; i++) {
     framesCascada.push(loadImage('assets/sprite-' + i + '.png'));
   }
   
-  
   // imagenes
   for (let i = 1; i <= cantidadEscenas; i++) {
-    imagenes[i] = loadImage(`assets/escena-${i}.jpg`);
+    imagenes[i] = loadImage('assets/escena-' + i + '.jpg');
   }
+  // audio
+  sonidoIntro = loadSound("sonido/LOZTheme.wav");
+
 }
 function setup() {
   createCanvas(800, 450);
   tiempoIntro =millis ();
   posTextoIntro = height + 50;
-}
+  }
+
 
 function draw() {
    if (pantalla == 0) {
     intro();
   }
-  else if (pantalla == 16) {
+  else if (pantalla == 19) {
     textoIntroPantalla();
   }
   else {
@@ -54,13 +63,21 @@ function draw() {
 }
 
 function mousePressed() {
-   if (pantalla == 0) {
+
+  if (!audioIniciado) {
+    userStartAudio();
+
+    if (sonidoIntro.isLoaded()) {
+      sonidoIntro.play();
+      audioIniciado = true;
+    }
+  }
+
+  if (pantalla == 0) {
     intro();
-  }
-  else if (pantalla == 16) {
+  } else if (pantalla == 19) {
     textoIntroPantalla();
-  }
-  else {
+  } else {
     clickPantallas();
   }
 }
