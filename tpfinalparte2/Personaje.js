@@ -1,43 +1,101 @@
 class Personaje {
   constructor(posX, posY) {
-    // inicializadores
-    this.posX= posX;
-    this.posY= posY;
-    this.miColor= color(255, 0, 0);
-    this.vida=1;
-   this.velocidadSalto=0;
-   this.saltando= false;
+    this.posX = posX;
+    this.posY = posY;
+
+    this.velocidad = 1.5;
+    this.velocidadSalto = 14;
+    this.saltando = false;
+
+    this.ancho = 70;
+    this.alto = 70;
+
+    this.estado = "QUIETO";
+    this.vida = 1;
+    this.velocidadAnimacion = 8;
   }
 
+  dibujar() {
+    
+    let imagenes;
 
-  dibujar () {
-    fill (this.miColor);
-    rect (this.posX, this.posY, 50, 50);
+    if (this.saltando) {
+      imagenes = personajeSaltando;
+    } else if (this.estado == "CORRIENDO_D") {
+      imagenes = personajeCorriendoD;
+    } else if (this.estado== "CORRIENDO_I") {
+      imagenes = personajeCorriendoI;
+    } else {
+      imagenes = personajeQuieto;
+    }
+
+ 
+    let cuadro = floor(frameCount / this.velocidadAnimacion) % imagenes.length;
+
+    // Dibujar el sprite correspondiente
+    image(imagenes[cuadro],  this.posX, this.posY, this.ancho, this.alto);
   }
 
-  moverDerecha () {
-    this.posX = this.posX + 2;
-  }
+  moverDerecha() {
+ this.posX += this.velocidad;
+  this.estado = "CORRIENDO_D";
+}
 
-  moverIzquierda () {
-    this.posX = this.posX - 2;
-  }
+  moverIzquierda() {
+  this.posX -= this.velocidad;
+  if (this.posX < 0) this.posX = 0;
+  this.estado = "CORRIENDO_I";
+}
 
-   saltar() {
+  saltar() {
     if (!this.saltando) {
       this.velocidadSalto = -12;
       this.saltando = true;
     }
   }
 
-  aplicarGravedad() {
-    this.posY = this.posY + this.velocidadSalto;
-    this.velocidadSalto = this.velocidadSalto + 0.6;
+  aplicarGravedad(plataformas) {
+  let posicionAnterior = this.posY;
 
-    if (this.posY >= 300) {
-      this.posY = 300;
+  this.posY += this.velocidadSalto;
+  this.velocidadSalto += 0.6;
+
+  this.saltando = true;
+
+  // Detectar el suelo
+  if (this.posY >= 300) {
+    this.posY = 300;
+    this.velocidadSalto = 0;
+    this.saltando = false;
+  }
+
+  // Detectar plataformas
+  for (let i = 0; i < plataformas.length; i++) {
+    let plataforma = plataformas[i];
+
+    let estabaArriba =
+      posicionAnterior + this.alto <= plataforma.posY;
+
+    let tocaPlataforma =
+      this.posX + this.ancho > plataforma.posX &&
+      this.posX < plataforma.posX + plataforma.ancho;
+
+    let estaCayendo = this.velocidadSalto >= 0;
+
+    if (estabaArriba &&tocaPlataforma && estaCayendo &&this.posY + this.alto >= plataforma.posY) {
+      this.posY = plataforma.posY - this.alto;
       this.velocidadSalto = 0;
       this.saltando = false;
     }
+  }
+}
+  actualizarEstado() {
+    if (!this.saltando &&!keyIsDown(RIGHT_ARROW) &&!keyIsDown(LEFT_ARROW)) {
+      this.estado = "QUIETO";
+    }
+  }
+
+  morir() {
+    this.vida = 0;
   }
 }
