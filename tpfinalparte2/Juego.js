@@ -9,7 +9,7 @@ class Juego {
     this.crearPlataformas ();
     this.enemigos = [];
     this.crearEnemigos();
-    this.estado = "jugando";
+    this.estado = "inicio";
     this.posXFondo = 0;
     this.camaraX= 0;
   }
