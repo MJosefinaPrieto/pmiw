@@ -1,4 +1,4 @@
-class Juego {
+class Juego { // distintos elementos que formaan parte de la partida
 
   constructor() {
     this.crearPersonaje();
@@ -12,7 +12,7 @@ class Juego {
     this.enemigos = [];
     this.crearEnemigos();
 
-    this.estado = "inicio";
+    this.estado = "inicio"; // creamos una variable nos permite controlar en que parte del juego estamos
 
     this.desplazamiento = 0;
   }
@@ -52,7 +52,7 @@ class Juego {
     this.plataformas.push(new Plataforma(1500, 275, 2));
   }
 
-  dibujar() {
+  dibujar() { // el metodo dibujar determina que pantalla o elemtnos se muestran
  if (this.estado == "inicio") {
     this.dibujarInicio();
 
@@ -111,7 +111,7 @@ class Juego {
   }
   }
 
-  dibujarInicio() {
+  dibujarInicio() { // menu de incio
     image(imagenInicio, 0, 0, width, height);
 
     image(botonJugar, 80, 320, 150, 50);
@@ -229,7 +229,7 @@ class Juego {
       fondo_parallax = 0;
     }
   }
-
+// interacciones del mouse y teclado
   teclaPresionada() {
 
   if ((this.estado == "perdiste" || this.estado == "ganaste") &&

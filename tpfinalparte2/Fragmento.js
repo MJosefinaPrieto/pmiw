@@ -29,7 +29,6 @@ class Fragmento {
         this.direccionBrillo = -1;
       }
 
-      
       push();
       tint(255, this.opacidad);
       image( imagenFragmento, this.posX, this.posY, this.ancho, this.alto);
