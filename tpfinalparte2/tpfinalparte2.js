@@ -4,7 +4,6 @@ let juego;
 let imagenInicio;
 let fondo;
 
-let botonJugar = [];
 
 let personajeQuieto = [];
 let personajeCorriendoD = [];
@@ -49,8 +48,8 @@ function preload() {
 
   imagenInicio = loadImage("assets/inicio.jpg");
 
-  botonJugar.push(loadImage('assets/jugar1.png'));
-  botonJugar.push(loadImage('assets/jugar2.png'));
+  botonJugar= loadImage('assets/jugar1.png');
+ 
   
   volver = loadImage("assets/botvolver.png");
   botonCreditos = loadImage("assets/botcreditos.png");

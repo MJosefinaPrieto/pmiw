@@ -11,7 +11,7 @@ class Personaje {
     this.alto = 70;
 
     this.estado = "QUIETO";
-    this.vida = 1;
+
     this.velocidadAnimacion = 8;
   }
 
@@ -95,8 +95,4 @@ class Personaje {
       this.estado = "QUIETO";
     }
   }
-
-  morir() {
-    this.vida = 0;
   }
-}

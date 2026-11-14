@@ -1,4 +1,3 @@
-
 class Juego {
 
   constructor() {
@@ -15,7 +14,7 @@ class Juego {
 
     this.estado = "inicio";
 
-    this.camaraX = 0;
+    this.desplazamiento = 0;
   }
 
   crearPersonaje() {
@@ -54,46 +53,37 @@ class Juego {
   }
 
   dibujar() {
+ if (this.estado == "inicio") {
+    this.dibujarInicio();
 
-    if (this.estado == "inicio") {
-      this.dibujarInicio();
-      return;
-    }
+  } else if (this.estado == "instrucciones") {
+    this.dibujarInstrucciones();
 
-    if (this.estado == "instrucciones") {
-      this.dibujarInstrucciones();
-      return;
-    }
+  } else if (this.estado == "creditos") {
+    this.dibujarCreditos();
 
-    if (this.estado == "creditos") {
-      this.dibujarCreditos();
-      return;
-    }
+  } else if (this.estado == "perdiste") {
+    image(pantallaPerdedor, 0, 0, width, height);
 
-    if (this.estado == "perdiste") {
-      image(pantallaPerdedor, 0, 0, width, height);
-      return;
-    }
+  } else if (this.estado == "ganaste") {
+    image(pantallaGanador, 0, 0, width, height);
 
-    if (this.estado == "ganaste") {
-      image(pantallaGanador, 0, 0, width, height);
-      return;
-    }
+  } else if (this.estado == "jugando") {
 
     background(0);
 
     this.moverPersonaje();
 
-    this.camaraX = this.personaje.posX - 300;
+    this.desplazamiento = this.personaje.posX - 300;
 
-    if (this.camaraX < 0) {
-      this.camaraX = 0;
+    if (this.desplazamiento < 0) {
+      this.desplazamiento = 0;
     }
 
     this.dibujarParallax(fondo, 0.3);
 
     push();
-    translate(-this.camaraX, 0);
+    translate(-this.desplazamiento, 0);
 
     for (let i = 0; i < this.plataformas.length; i++) {
       this.plataformas[i].dibujar();
@@ -119,11 +109,12 @@ class Juego {
 
     this.mostrarContador();
   }
+  }
 
   dibujarInicio() {
     image(imagenInicio, 0, 0, width, height);
 
-    image(botonJugar[0], 80, 320, 150, 50);
+    image(botonJugar, 80, 320, 150, 50);
 
     image(botonInst, 320, 320, 160, 50);
 
@@ -241,24 +232,22 @@ class Juego {
 
   teclaPresionada() {
 
-    if ((this.estado == "perdiste" || this.estado == "ganaste") &&
+  if ((this.estado == "perdiste" || this.estado == "ganaste") &&
       (key == "r" || key == "R")) {
 
-      musica.stop();
-      sonidoGanar.stop();
-      sonidoPerder.stop();
+    musica.stop();
+    sonidoGanar.stop();
+    sonidoPerder.stop();
 
-      juego = new Juego();
-      musica.loop();
+    juego = new Juego();
+    musica.loop();
 
-      return;
-    }
+  } else if (this.estado == "jugando" && key == " ") {
 
-    if (this.estado == "jugando" && key == " ") {
-      this.personaje.saltar();
-    }
+    this.personaje.saltar();
+
   }
-
+  }
   mousePresionado() {
 
     if (this.estado == "inicio") {
@@ -285,3 +274,4 @@ class Juego {
     }
   }
 }
+  
